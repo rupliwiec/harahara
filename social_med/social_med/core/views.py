@@ -5,4 +5,4 @@ def index(request):
     return render(request, 'index.html')
 
 def signup(request):
-    return (request, 'signup.html')
+    return render(request, 'signup.html')
