@@ -23,7 +23,7 @@ def signup(request):
                 return redirect('signup')
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
-                user.save
+                user.save()
         else:
             messages.info(request, 'Password Does Not Match')
             return redirect('signup')
