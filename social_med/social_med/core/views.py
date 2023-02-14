@@ -16,11 +16,14 @@ def signup(request):
 
         if password == password2:
             if User.objects.filter(email=email).exists():
-                messages.info(request, 'Email Is Already Taken')
-                return redirect(signup)
+                messages.info(request, 'Email Has Already Been Taken')
+                return redirect('signup')
+            elif User.objects.filter(username=username).exists():
+                messages.info(request, 'Username Has Aready Been Taken')
+                return redirect('signup')
         else:
             messages.info(request, 'Password Does Not Match')
-            return redirect(signup)
+            return redirect('signup')
 
     else:
         return render(request, 'signup.html')
