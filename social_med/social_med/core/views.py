@@ -21,6 +21,9 @@ def signup(request):
             elif User.objects.filter(username=username).exists():
                 messages.info(request, 'Username Has Aready Been Taken')
                 return redirect('signup')
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save
         else:
             messages.info(request, 'Password Does Not Match')
             return redirect('signup')
