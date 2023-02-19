@@ -21,7 +21,12 @@ def settings(request):
             image= user_profile.profileimg
             bio = request.POST['bio']
             location = request.POST['location']
-        
+
+            user_profile.profileimg = image
+            user_profile.bio = bio
+            user_profile.location = location
+            user_profile.save()
+
     return render(request, 'setting.html', {'user_profile': user_profile})
 
 def signup(request):
