@@ -33,7 +33,7 @@ def upload(request):
 @login_required(login_url='signin')
 def like_post(request):
     username = request.user.username
-    post_id = request.GET.get(post_id)
+    post_id = request.GET.get('post_id')
 
     post = Post.objects.get(id=post_id)
 
