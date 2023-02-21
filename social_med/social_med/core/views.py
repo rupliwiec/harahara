@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Post, LikePost
+from .models import Profile, Post, LikePost, FollowersCount
 
 # Create your views here.
 
@@ -64,6 +64,17 @@ def profile(request, pk):
         'user_post_length': user_post_length,
     }
     return render(request, 'profile.html', context)
+
+@login_required(login_url='signin')
+def follow(request):
+    if request.method == 'POST':
+        follower = request.POST['follower']
+        user = request.POST['user']
+
+        if FollowersCount.objects.filter(follower=follower, user=user).first():
+            pass
+    else:
+        return redirect('/')
 
 @login_required(login_url='signin')
 def settings(request):
