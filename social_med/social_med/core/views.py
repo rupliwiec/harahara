@@ -189,7 +189,7 @@ def signin(request):
             return redirect('/')
         else:
             messages.info(request, 'Credentials Invalid')
-            return redirect()
+            return redirect('/')
     else:
         return render(request, 'signin.html')
 
